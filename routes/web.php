@@ -13,61 +13,61 @@
 
 
 
-Route::group(['prefix' => 'admin','middleware' => 'roleUser'],function(){
+app('router')->group(['prefix' => 'admin','middleware' => 'roleUser'],function(){
 
 	// route for dashbroad admin with all product and crud
-	Route::get('/home',['as' => 'homeAdmin','uses' => 'AdminController@index']);
+	app('router')->get('/home',['as' => 'homeAdmin','uses' => 'AdminController@index']);
 
 	// ROUTE FOR GET AND UPDATE USER INFORMATION
-	Route::group(['prefix' => 'user'],function(){
+	app('router')->group(['prefix' => 'user'],function(){
 
-		Route::get('/createUser',['as' => 'createUser','uses' => 'AdminController@getCreateUser']);
+		app('router')->get('/createUser',['as' => 'createUser','uses' => 'AdminController@getCreateUser']);
 
-		Route::post('/createUser',['as' => 'createUser','uses' => 'AdminController@postCreateUser']);
+		app('router')->post('/createUser',['as' => 'createUser','uses' => 'AdminController@postCreateUser']);
 
-		Route::get('/allUser',['as' => 'allUser','uses' => 'AdminController@getAllUser']);
+		app('router')->get('/allUser',['as' => 'allUser','uses' => 'AdminController@getAllUser']);
 
-		Route::get('/detailUser/{id}',['as' => 'detailUser','uses' => 'AdminController@getDetailUser']);
+		app('router')->get('/detailUser/{id}',['as' => 'detailUser','uses' => 'AdminController@getDetailUser']);
 
-		Route::get('/updateUser/{id}',['as' => 'updateUser','uses' => 'AdminController@getUpdateUser']);
+		app('router')->get('/updateUser/{id}',['as' => 'updateUser','uses' => 'AdminController@getUpdateUser']);
 
-		Route::post('/updateUser/{id}',['as' => 'updateUser','uses' => 'AdminController@postUpdateUser']);
+		app('router')->post('/updateUser/{id}',['as' => 'updateUser','uses' => 'AdminController@postUpdateUser']);
 
-		Route::get('/deleteUser/{id}',['as' => 'deleteUser','uses' => 'AdminController@deleteUser']);
+		app('router')->get('/deleteUser/{id}',['as' => 'deleteUser','uses' => 'AdminController@deleteUser']);
 
-		Route::get('/seachUser',['as' => 'searchUser','uses' => 'AdminController@seachUser']);
+		app('router')->get('/seachUser',['as' => 'searchUser','uses' => 'AdminController@seachUser']);
 
 		
 	});
 
 
-	Route::get('/home',['as' => 'homeAdmin','uses' => 'AdminController@index']);
+	app('router')->get('/home',['as' => 'homeAdmin','uses' => 'AdminController@index']);
 
 
 	// Route for CRUD with product
-	Route::group(['prefix' => 'product'],function(){
+	app('router')->group(['prefix' => 'product'],function(){
 		
-		Route::get('/createProduct',['as' => 'createProduct','uses' => 'AdminController@getCreateProduct']);
+		app('router')->get('/createProduct',['as' => 'createProduct','uses' => 'AdminController@getCreateProduct']);
 
-		Route::post('/createProduct',['as' => 'createProduct','uses' => 'AdminController@postCreateProduct']);
-
-
-
-
-
-		Route::get('/getProduct/{id}',['as' => 'detailProduct','uses' => 'AdminController@getDetailProduct'])->where('id', '[0-9]+');
-
-		Route::get('/updateProduct/{id}',['as' => 'updateProduct','uses' => 'AdminController@getUpdateProduct'])->where('id', '[0-9]+');
-
-		Route::post('/updateProduct/{id}',['as' => 'updateProduct','uses' => 'AdminController@postUpdateProduct'])->where('id', '[0-9]+');
-
-		Route::get('/deleteProduct/{id}',['as' => 'deleteProduct','uses' => 'AdminController@deleteProduct'])->where('id', '[0-9]+');
+		app('router')->post('/createProduct',['as' => 'createProduct','uses' => 'AdminController@postCreateProduct']);
 
 
 
 
 
-		Route::get('/filterProduct',['as' => 'filterProduct','uses' => 'AdminController@filterProduct']);
+		app('router')->get('/getProduct/{id}',['as' => 'detailProduct','uses' => 'AdminController@getDetailProduct'])->where('id', '[0-9]+');
+
+		app('router')->get('/updateProduct/{id}',['as' => 'updateProduct','uses' => 'AdminController@getUpdateProduct'])->where('id', '[0-9]+');
+
+		app('router')->post('/updateProduct/{id}',['as' => 'updateProduct','uses' => 'AdminController@postUpdateProduct'])->where('id', '[0-9]+');
+
+		app('router')->get('/deleteProduct/{id}',['as' => 'deleteProduct','uses' => 'AdminController@deleteProduct'])->where('id', '[0-9]+');
+
+
+
+
+
+		app('router')->get('/filterProduct',['as' => 'filterProduct','uses' => 'AdminController@filterProduct']);
 
 	});
 
@@ -79,17 +79,17 @@ Route::group(['prefix' => 'admin','middleware' => 'roleUser'],function(){
 });
 
 
-	Route::group(['prefix'  =>  'user'],function(){
+	app('router')->group(['prefix'  =>  'user'],function(){
 
 		// route for get all product
-		Route::get('/home',['as' => 'home','uses' => 'UserController@index']);
+		app('router')->get('/home',['as' => 'home','uses' => 'UserController@index']);
 
 	});
 
 			
-	Route::group(['prefix' => 'api/v1', 'middleware' => 'api'], function(){
+	app('router')->group(['prefix' => 'api/v1', 'middleware' => 'api'], function(){
 
-		Route::resource('products', 'ProductController');
+		app('router')->resource('products', 'ProductController');
 	 });
 
 	Auth::routes();
